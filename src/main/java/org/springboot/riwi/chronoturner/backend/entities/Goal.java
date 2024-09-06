@@ -1,37 +1,32 @@
 package org.springboot.riwi.chronoturner.backend.entities;
 
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jdk.jshell.Snippet;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springboot.riwi.chronoturner.backend.utils.EnumGoal.StatusGoal;
+import jakarta.persistence.*;
+import lombok.*;
+import org.springboot.riwi.chronoturner.backend.utils.enumGoal.StatusGoal;
 
 import java.time.LocalDateTime;
 
-@Setter
-@Getter
+@Entity
+@Table(name = "goals")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Goal {
-
+        //Atributos de Goal
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-
     private String description;
-
     private LocalDateTime startDate;
-
     private LocalDateTime endDate;
-
     private StatusGoal status;
+    private String user_id; //Un User, varias Goals --Cuidadongos con estas relaciones, establecer cardinalidad luego
 
-    private String user_id;
-
+    //Constructores de Goal
+    //Asignadores de atributos de Goal (setters)
+    //Lectores de atributos de Goal (getters)
+    //Métodos de Goal
 
 }

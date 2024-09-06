@@ -1,27 +1,28 @@
 package org.springboot.riwi.chronoturner.backend.entities;
 
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springboot.riwi.chronoturner.backend.utils.EnumPriority.Name;
+import jakarta.persistence.*;
+import lombok.*;
+import org.springboot.riwi.chronoturner.backend.utils.enumPriority.Name;
 
-@Setter
-@Getter
+@Entity
+@Table(name = "priorities")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Priority {
-
+        //Atributos de Priority
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-
     private Name name;
-
     private String description;
+
+    //Constructores de Priority
+    //Asignadores de atributos de Priority (setters)
+    //Lectores de atributos de Priority (getters)
+    //Métodos de Priority
+
 
 }
