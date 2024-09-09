@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springboot.riwi.chronoturner.backend.utils.enumUser.TypeUser;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -26,6 +27,10 @@ public class User {
     private LocalDateTime registrationDate;
     private LocalDateTime lastAccessDate;
     private TypeUser typeUser;
+    @OneToMany(mappedBy = "userEntity")
+    private List<Task> taskList;
+    @OneToMany(mappedBy = "user")
+    private List<Goal> goalList;
 
     //Constructores de CLASE
     //Asignadores de atributos de CLASE (setters)

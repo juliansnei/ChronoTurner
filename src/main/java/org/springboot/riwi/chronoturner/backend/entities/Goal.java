@@ -6,6 +6,7 @@ import lombok.*;
 import org.springboot.riwi.chronoturner.backend.utils.enumGoal.StatusGoal;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "goals")
@@ -22,7 +23,12 @@ public class Goal {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private StatusGoal status;
-    private String user_id; //Un User, varias Goals --Cuidadongos con estas relaciones, establecer cardinalidad luego
+    //private String user_id; //Un User, varias Goals --Cuidadongos con estas relaciones, establecer cardinalidad luego
+    @OneToMany(mappedBy = "goalEntity")
+    private List<Task> taskList;
+    @ManyToOne
+    @JoinColumn(name = "user")
+    private User user;
 
     //Constructores de Goal
     //Asignadores de atributos de Goal (setters)

@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "categories")
 @Data
@@ -21,6 +23,8 @@ public class Category {
     private String name;
     private String description;
     private String colour;
+    @OneToMany(mappedBy = "categoryEntity")
+    private List<Task> taskList;
 
     //Constructores de Category
     //Asignadores de atributos de Category (setters)
