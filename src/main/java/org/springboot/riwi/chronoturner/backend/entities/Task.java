@@ -6,7 +6,6 @@ import org.springboot.riwi.chronoturner.backend.utils.taskEnums.enumSubTask.Stat
 import org.springboot.riwi.chronoturner.backend.utils.taskEnums.enumTask.StatusTask;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "tasks")
