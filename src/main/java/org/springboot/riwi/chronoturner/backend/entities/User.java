@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class User {
-        //Atributos de CLASE
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
@@ -32,8 +32,4 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Goal> goalList;
 
-    //Constructores de CLASE
-    //Asignadores de atributos de CLASE (setters)
-    //Lectores de atributos de CLASE (getters)
-    //Métodos de CLASE
 }

@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class Goal {
-        //Atributos de Goal
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
@@ -23,16 +23,13 @@ public class Goal {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private StatusGoal status;
-    //private String user_id; //Un User, varias Goals --Cuidadongos con estas relaciones, establecer cardinalidad luego
+
     @OneToMany(mappedBy = "goalEntity")
     private List<Task> taskList;
     @ManyToOne
     @JoinColumn(name = "user")
     private User user;
 
-    //Constructores de Goal
-    //Asignadores de atributos de Goal (setters)
-    //Lectores de atributos de Goal (getters)
-    //Métodos de Goal
+
 
 }

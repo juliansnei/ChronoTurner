@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 public class Task {
-        //Atributos de Task
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
@@ -26,10 +26,7 @@ public class Task {
     private LocalDateTime expirationDate;
     private StatusTask statusTask;
     private StatusSubTask statusSubTask;
-    //Una Task, una Priority  --Cuidadongos con estas relaciones, establecer cardinalidad luego
-    //private String goalID;  //Un Goal, varias Task  --Cuidadongos con estas relaciones, establecer cardinalidad luego
-    //private String categoryID;  //Una Category, una Task  --Cuidadongos con estas relaciones, establecer cardinalidad luego
-    //private String userID;  //Un User, varias Task  --Cuidadongos con estas relaciones, establecer cardinalidad luego
+
     @ManyToOne
     @JoinColumn(name = "priority_id")
     private Priority priorityEntity;
@@ -42,8 +39,4 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "")
     private User userEntity;
-    //Constructores de Task
-    //Asignadores de atributos de Task (setters)
-    //Lectores de atributos de Task (getters)
-    //Métodos de Task
 }

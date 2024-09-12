@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class Category {
-        //Atributos de Category
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
@@ -26,8 +26,4 @@ public class Category {
     @OneToMany(mappedBy = "categoryEntity")
     private List<Task> taskList;
 
-    //Constructores de Category
-    //Asignadores de atributos de Category (setters)
-    //Lectores de atributos de Category (getters)
-    //Métodos de Category
 }

@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class Priority {
-        //Atributos de Priority
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
@@ -23,10 +23,6 @@ public class Priority {
     @OneToMany(mappedBy = "priorityEntity")
     private List<Task> taskList;
 
-    //Constructores de Priority
-    //Asignadores de atributos de Priority (setters)
-    //Lectores de atributos de Priority (getters)
-    //Métodos de Priority
 
 
 }
