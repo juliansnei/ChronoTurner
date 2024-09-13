@@ -19,17 +19,31 @@ public class Goal {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
+    private String name;
     private String description;
+
+    @Column(nullable=false)
     private LocalDateTime startDate;
+
+    @Column(nullable=false)
     private LocalDateTime endDate;
+
+    @Enumerated(EnumType.STRING)
     private StatusGoal status;
 
     @OneToMany(mappedBy = "goalEntity")
     private List<Task> taskList;
+
     @ManyToOne
     @JoinColumn(name = "user")
     private User user;
 
-
+    @PrePersist
+    public void GoalCreation() {
+        if (this.startDate == null) {
+            this.startDate = LocalDateTime.now();
+        }
+        this.status=StatusGoal.STARTED;
+    }
 
 }
