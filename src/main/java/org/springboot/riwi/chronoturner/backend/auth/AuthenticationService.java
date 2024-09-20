@@ -48,7 +48,9 @@ public class AuthenticationService {
                 .roles(List.of(userRole))
                 .build();
         userRepository.save(user);
-        sendValidationEmail(user);
+        var newToken = generateAndSaveActivationToken(user); //added
+        activateAccount(newToken);
+        //sendValidationEmail(user);
     }
 
     private void sendValidationEmail(User user) throws MessagingException {
@@ -109,10 +111,10 @@ public class AuthenticationService {
     public void activateAccount(String token) throws MessagingException {
         Token savedToken = tokenRepository.findByToken(token)
                 .orElseThrow(() -> new RuntimeException("Invalid token"));
-        if(LocalDateTime.now().isAfter(savedToken.getExpiresAt())) {
-            sendValidationEmail(savedToken.getUser());
-            throw new RuntimeException("Activation token has expired. A new token has been sent to the same email address");
-        }
+       // if(LocalDateTime.now().isAfter(savedToken.getExpiresAt())) {
+       //     sendValidationEmail(savedToken.getUser());
+       //     throw new RuntimeException("Activation token has expired. A new token has been sent to the same email address");
+       // }
         var user = userRepository.findById(savedToken.getUser().getId())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
         user.setEnabled(true);
