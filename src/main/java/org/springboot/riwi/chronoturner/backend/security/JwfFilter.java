@@ -35,7 +35,7 @@ public class JwfFilter extends OncePerRequestFilter {
     ) throws ServletException, IOException {
         log.debug("JwfFilter: Processing request for path: " + request.getServletPath());
 
-        if(request.getServletPath().startsWith("/auth")){
+        if(request.getServletPath().startsWith("/api/v1/auth")){
             log.debug("JwfFilter: Allowing request to /auth endpoint without authentication");
             filterChain.doFilter(request, response);
             return;
