@@ -47,10 +47,11 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .accountLocked(false)
                 .roles(new ArrayList<>(List.of(userRole)))
+                .enabled(true)
                 .build();
         userRepository.save(user);
-        var newToken = generateAndSaveActivationToken(user); //added
-        activateAccount(newToken);
+        // var newToken = generateAndSaveActivationToken(user); //added
+        // activateAccount(newToken);
         //sendValidationEmail(user);
     }
 
