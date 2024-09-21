@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class AuthenticationService {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .accountLocked(false)
-                .roles(List.of(userRole))
+                .roles(new ArrayList<>(List.of(userRole)))
                 .build();
         userRepository.save(user);
         var newToken = generateAndSaveActivationToken(user); //added
@@ -111,10 +112,10 @@ public class AuthenticationService {
     public void activateAccount(String token) throws MessagingException {
         Token savedToken = tokenRepository.findByToken(token)
                 .orElseThrow(() -> new RuntimeException("Invalid token"));
-       // if(LocalDateTime.now().isAfter(savedToken.getExpiresAt())) {
-       //     sendValidationEmail(savedToken.getUser());
-       //     throw new RuntimeException("Activation token has expired. A new token has been sent to the same email address");
-       // }
+       if(LocalDateTime.now().isAfter(savedToken.getExpiresAt())) {
+           sendValidationEmail(savedToken.getUser());
+           throw new RuntimeException("Activation token has expired. A new token has been sent to the same email address");
+       }
         var user = userRepository.findById(savedToken.getUser().getId())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
         user.setEnabled(true);
