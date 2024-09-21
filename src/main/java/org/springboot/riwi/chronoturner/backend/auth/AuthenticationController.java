@@ -4,11 +4,13 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Slf4j
 @RequestMapping("auth")
 @RequiredArgsConstructor
 @Tag(name = "Authentication")
@@ -21,7 +23,9 @@ public class AuthenticationController {
     public ResponseEntity<?> register(
             @RequestBody @Valid RegistrationRequest request
     ) throws MessagingException {
+        log.info("Solicitud de registro recibida para: {}", request.getEmail());
         service.register(request);
+        log.info("Registro completado para: {}", request.getEmail());
         return ResponseEntity.accepted().build();
     }
 
