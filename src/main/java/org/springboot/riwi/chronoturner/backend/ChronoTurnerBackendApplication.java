@@ -22,21 +22,20 @@ public class ChronoTurnerBackendApplication {
 		SpringApplication.run(ChronoTurnerBackendApplication.class, args);
 	}
 
-	@Configuration
-	public static class MyConfiguration{
-		@Bean
-		public WebMvcConfigurer corsConfigurer(){
-			return new WebMvcConfigurer() {
-
-				@Override
-				public void addCorsMappings(CorsRegistry registry) {
-					registry.addMapping("/**")
-							.allowedOrigins("*")
-							.allowedMethods("HEAD", "GET", "PUT", "POST","DELETE", "PATCH");
-				}
-			};
-		}
-	}
+	//@Configuration
+	//public static class MyConfiguration{
+	//	@Bean
+	//	public WebMvcConfigurer corsConfigurer(){
+	//		return new WebMvcConfigurer() {
+	//			@Override
+	//			public void addCorsMappings(CorsRegistry registry) {
+	//				registry.addMapping("/**")
+	//						.allowedOrigins("*")
+	//						.allowedMethods("HEAD", "GET", "PUT", "POST","DELETE", "PATCH");
+	//			}
+	//		};
+	//	}
+	// }
 
 
 	@Bean
