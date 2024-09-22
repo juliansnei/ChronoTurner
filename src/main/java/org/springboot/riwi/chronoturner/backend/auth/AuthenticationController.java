@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@Slf4j
 @RequestMapping("auth")
 @RequiredArgsConstructor
 @Tag(name = "Authentication")
@@ -18,14 +17,16 @@ public class AuthenticationController {
 
     private final AuthenticationService service;
 
+    public AuthenticationController(AuthenticationService service) {
+        this.service = service;
+    }
+
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<?> register(
             @RequestBody @Valid RegistrationRequest request
     ) throws MessagingException {
-        log.info("Solicitud de registro recibida para: {}", request.getEmail());
         service.register(request);
-        log.info("Registro completado para: {}", request.getEmail());
         return ResponseEntity.accepted().build();
     }
 
@@ -41,5 +42,10 @@ public class AuthenticationController {
             @RequestParam String token
     ) throws MessagingException {
         service.activateAccount(token);
+    }
+
+    @GetMapping("/test")
+    public ResponseEntity<String> test() {
+        return ResponseEntity.ok("Test endpoint working");
     }
 }
