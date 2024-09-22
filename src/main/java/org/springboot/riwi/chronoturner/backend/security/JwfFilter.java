@@ -34,7 +34,7 @@ public class JwfFilter extends OncePerRequestFilter {
             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
 
-        if(request.getServletPath().startsWith("/auth")){
+        if(request.getServletPath().startsWith("/api/v1/auth")){
             filterChain.doFilter(request, response);
             return;
         }
