@@ -33,8 +33,11 @@ public class JwfFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
+        String path = request.getServletPath();
+        log.debug("JwfFilter: Processing request for path: {}", path);
 
         if(request.getServletPath().startsWith("/auth")){
+            log.debug("JwfFilter: Allowing request to /auth endpoint without authentication");
             filterChain.doFilter(request, response);
             return;
         }
@@ -42,6 +45,7 @@ public class JwfFilter extends OncePerRequestFilter {
         final String jwt;
         final String userEmail;
         if(authHeader == null || !authHeader.startsWith("Bearer ")){
+            log.debug("JwfFilter: No valid Authorization header found, passing to next filter");
             filterChain.doFilter(request, response);
             return;
         }

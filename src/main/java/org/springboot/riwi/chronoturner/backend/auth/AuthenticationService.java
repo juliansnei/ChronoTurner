@@ -50,7 +50,7 @@ public class AuthenticationService {
                 .enabled(true)
                 .build();
         userRepository.save(user);
-        // var newToken = generateAndSaveActivationToken(user); //added
+        var newToken = generateAndSaveActivationToken(user); //added
         // activateAccount(newToken);
         //sendValidationEmail(user);
     }
