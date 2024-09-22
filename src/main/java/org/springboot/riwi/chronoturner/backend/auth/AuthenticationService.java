@@ -49,8 +49,9 @@ public class AuthenticationService {
                 .roles(new ArrayList<>(List.of(userRole)))
                 .enabled(true)
                 .build();
+        System.out.println(user);
         userRepository.save(user);
-        var newToken = generateAndSaveActivationToken(user); //added
+        //var newToken = generateAndSaveActivationToken(user); //added
         // activateAccount(newToken);
         //sendValidationEmail(user);
     }
