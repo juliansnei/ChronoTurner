@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,7 +46,7 @@ public class User implements UserDetails, Principal {
     @OneToMany(mappedBy = "user")
     private List<Goal> goalList;
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Role> roles;
+    private List<Role> roles = new ArrayList<>();
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

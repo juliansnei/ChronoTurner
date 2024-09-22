@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class AuthenticationService {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .accountLocked(false)
-                .roles(List.of(userRole))
+                .roles(new ArrayList<>(List.of(userRole)))
                 .build();
         userRepository.save(user);
         var newToken = generateAndSaveActivationToken(user); //added
